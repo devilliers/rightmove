@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Rightmove Leasehold Filter",
+  "version": "1.0",
+  "description": "Filter out leasehold properties on rightmove",
+
+  "icons": {
+    "16": "images/rightmove.png",
+    "32": "images/rightmove.png",
+    "48": "images/rightmove.png",
+    "128": "images/rightmove.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "https://www.rightmove.co.uk/property-for-sale/*"
+      ]
+    }
+  ]
+}
