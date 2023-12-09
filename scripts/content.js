@@ -7,10 +7,13 @@ function removeNodeByDataTestAttr(index) {
 	removeNode(node);
 }
 
-function colourNodeByDataTestAttr(index, tenure) {
+function insertTenureSpanBeforePropDesc(index, tenure) {
 	var node = document.querySelector(`[data-test="propertyCard-${index}"]`);
-	node.style['color'] = '#ff0000';
-	node.querySelector('[data-test="property-description"]').childNodes.item(0).textContent = tenure;
+	let contentElement = node.querySelector('[data-test="property-description"]').childNodes.item(0);
+	const newNode = document.createElement("span");
+	newNode.style['color'] = '#ff0000';
+	newNode.textContent = tenure;
+	contentElement.insertAdjacentHTML('beforebegin', '<span style="color:red">' + tenure + ' - ' + '</span>');
 }
 
 function removeLeaseholdProperties() {
@@ -37,12 +40,12 @@ function removeLeaseholdProperties() {
 						if (text == 'Leasehold') {
 							if (!badNodeIndices.includes(index)) {
 								badNodeIndices.push(index);
-								colourNodeByDataTestAttr(index, "LEASEHOLD");
+								insertTenureSpanBeforePropDesc(index, "LEASEHOLD");
 							}
 						} else if (text == "Ask agent") {
 							if (!badNodeIndices.includes(index)) {
 								badNodeIndices.push(index);
-								colourNodeByDataTestAttr(index, "ASK AGENT");
+								insertTenureSpanBeforePropDesc(index, "ASK AGENT");
 							}
 						}
 					}
@@ -50,7 +53,7 @@ function removeLeaseholdProperties() {
 					if (button) {
 						if (!badNodeIndices.includes(index)) {
 							badNodeIndices.push(index);
-							colourNodeByDataTestAttr(index);
+							insertTenureSpanBeforePropDesc(index);
 						}
 					}
 				})
